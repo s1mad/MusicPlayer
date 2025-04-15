@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="remote_navigation_bar_item">Remote</string>
+    <string name="local_navigation_bar_item">Local</string>
+</resources>
