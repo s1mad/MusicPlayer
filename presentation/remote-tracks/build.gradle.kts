@@ -49,4 +49,10 @@ dependencies {
     implementation(libs.exoplayer)
 
     debugImplementation(libs.androidx.ui.tooling)
+
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.turbine)
 }
