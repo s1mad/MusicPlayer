@@ -26,23 +26,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.simad.musicplayer.di.util.appComponent
 import com.simad.musicplayer.navigation.AppNavDestination
 import com.simad.musicplayer.navigation.AppNavGraph
 import com.simad.musicplayer.presentation.core.theme.MusicPlayerTheme
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { App() }
+
+        appComponent.inject(this)
+
+        setContent { App(viewModelFactory = viewModelFactory) }
     }
 }
 
 @Composable
-private fun App() = MusicPlayerTheme {
+private fun App(
+    viewModelFactory: ViewModelProvider.Factory
+) = MusicPlayerTheme {
     val navController = rememberNavController()
 
     val color = MaterialTheme.colorScheme.background
@@ -55,7 +67,11 @@ private fun App() = MusicPlayerTheme {
         CompositionLocalProvider(
             LocalContentColor provides contentColorFor(color),
         ) {
-            AppNavGraph(navController = navController, modifier = Modifier.weight(1f))
+            AppNavGraph(
+                navController = navController,
+                viewModelFactory = viewModelFactory,
+                modifier = Modifier.weight(1f)
+            )
             AppNavigationBar(navController = navController)
         }
     }
