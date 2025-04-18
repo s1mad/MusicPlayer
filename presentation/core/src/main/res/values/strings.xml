@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="find_tracks">Найти треки</string>
+    <string name="try_again">Повторить попытку</string>
+    <string name="app_need_media_permission">Этому приложению нужен доступ к вашим аудиофайлам для отображения музыки.</string>
+    <string name="grant_permission">Предоставить разрешение</string>
+    <string name="grant_permission_manually">Разрешение на доступ к хранилищу было навсегда отклонено. Пожалуйста, включите его в настройках приложения.</string>
+    <string name="open_settings">Открыть настройки</string>
+    <string name="no_tracks_found">Треки не найдены</string>
 </resources>

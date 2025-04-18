@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.simad.musicplayer.presentation.core.R
 import com.simad.musicplayer.presentation.core.component.MessagePane
 import com.simad.musicplayer.presentation.core.component.SearchTrackPanel
 import com.simad.musicplayer.presentation.core.component.TrackList
@@ -58,7 +59,6 @@ fun RemoteTracksScreen(
                     CircularProgressIndicator()
                 }
 
-
                 targetState.error != null -> MessagePane(
                     message = targetState.error,
                     buttonLabel = stringResource(R.string.try_again),
@@ -66,7 +66,7 @@ fun RemoteTracksScreen(
                 )
 
                 targetState.tracks.isEmpty() -> MessagePane(
-                    message = "Треки не найдены",
+                    message = stringResource(R.string.no_tracks_found),
                     buttonLabel = stringResource(R.string.try_again),
                     onButtonClick = { viewModel.onIntent(RemoteTracksViewModel.Intent.RetryLoading) },
                 )
