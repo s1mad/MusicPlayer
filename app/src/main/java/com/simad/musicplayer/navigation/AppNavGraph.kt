@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.simad.musicplayer.presentation.localtracks.LocalTracksScreen
 import com.simad.musicplayer.presentation.remotetracks.RemoteTracksScreen
 
 @Composable
@@ -24,7 +25,12 @@ fun AppNavGraph(
     ) {
 
         composable<AppNavDestination.LocalTracks> {
-            Text("LocalTracks")
+            LocalTracksScreen(
+                viewModel = viewModel(factory = viewModelFactory),
+                navToPlayer = { trackId ->
+                    navController.navigate(AppNavDestination.Player(trackId))
+                }
+            )
         }
 
         composable<AppNavDestination.RemoteTracks> {
