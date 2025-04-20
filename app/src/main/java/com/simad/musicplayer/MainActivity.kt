@@ -4,11 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -82,18 +77,8 @@ private fun AppNavigationBar(
     navController: NavHostController
 ) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    val visibleOnDestinations = AppNavDestination.NavigationBarVisibleOnDestinations.map { it::class.qualifiedName }
 
-    AnimatedVisibility(
-        visible = currentRoute in visibleOnDestinations,
-        enter = slideInVertically(
-            initialOffsetY = { it }
-        ) + fadeIn(),
-        exit = slideOutVertically(
-            targetOffsetY = { it }
-        ) + fadeOut()
-    ) {
-        NavigationBar {
+    NavigationBar {
             NavigationBarItem(
                 selected = currentRoute == AppNavDestination.LocalTracks::class.qualifiedName,
                 onClick = { navController.navigate(AppNavDestination.LocalTracks) },
@@ -108,4 +93,3 @@ private fun AppNavigationBar(
             )
         }
     }
-}

@@ -32,4 +32,22 @@ class FindTrackRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
+    override suspend fun findAlbum(
+        id: String,
+        isRemoteSource: Boolean
+    ): Result<List<Track>> {
+        return try {
+            if (isRemoteSource) {
+                val response = api.getAlbumTracks(id.toLong())
+                Result.success(response.tracks.data.map { it.toDomain() })
+            } else {
+                val localTracks = localSource.getLocalTracks().first()
+                val albumTracks = localTracks.filter { it.album == id }.map { it.toDomain() }
+                Result.success(albumTracks)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

@@ -18,6 +18,7 @@ fun LocalTrackDto.toDomain(): Track {
         title = title,
         artist = artist,
         album = album,
+        albumId = album,
         coverUrl = coverPath,
         duration = duration,
         source = TrackSource.Local(filePath)

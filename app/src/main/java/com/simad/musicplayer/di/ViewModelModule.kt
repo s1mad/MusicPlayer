@@ -3,6 +3,7 @@ package com.simad.musicplayer.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.simad.musicplayer.presentation.localtracks.LocalTracksViewModel
+import com.simad.musicplayer.presentation.player.PlayerViewModel
 import com.simad.musicplayer.presentation.remotetracks.RemoteTracksViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -27,6 +28,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LocalTracksViewModel::class)
     abstract fun bindLocalTracksViewModel(viewModel: LocalTracksViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlayerViewModel::class)
+    abstract fun bindPlayerViewModel(viewModel: PlayerViewModel): ViewModel
 }
 
 class ViewModelFactory @Inject constructor(

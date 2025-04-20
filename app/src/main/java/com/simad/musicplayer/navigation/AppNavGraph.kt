@@ -1,6 +1,5 @@
 package com.simad.musicplayer.navigation
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.simad.musicplayer.presentation.localtracks.LocalTracksScreen
+import com.simad.musicplayer.presentation.player.PlayerScreen
 import com.simad.musicplayer.presentation.remotetracks.RemoteTracksScreen
 
 @Composable
@@ -44,7 +44,10 @@ fun AppNavGraph(
 
         composable<AppNavDestination.Player> { backStackEntry ->
             val playerRoute: AppNavDestination.Player = backStackEntry.toRoute()
-            Text("Player (trackId = ${playerRoute.trackId})")
+            PlayerScreen(
+                trackId = playerRoute.trackId,
+                viewModel = viewModel(factory = viewModelFactory),
+            )
         }
     }
 }

@@ -5,10 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface AppNavDestination {
 
-    companion object {
-        val NavigationBarVisibleOnDestinations = listOf(LocalTracks, RemoteTracks)
-    }
-
     @Serializable
     data object LocalTracks : AppNavDestination
 

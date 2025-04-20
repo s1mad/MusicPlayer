@@ -53,6 +53,7 @@ private fun TrackItemPreview() = MusicPlayerTheme {
             title = "title",
             artist = "artist",
             album = "album",
+            albumId = "",
             coverUrl = null,
             duration = 100,
             source = TrackSource.Remote("")

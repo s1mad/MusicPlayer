@@ -1,5 +1,6 @@
 package com.simad.musicplayer.data.remote
 
+import com.simad.musicplayer.data.remote.dto.ApiAlbumTracksResponse
 import com.simad.musicplayer.data.remote.dto.ApiTrackDto
 import com.simad.musicplayer.data.remote.dto.ApiTracksResponse
 import retrofit2.http.GET
@@ -15,4 +16,7 @@ interface DeezerApi {
 
     @GET("track/{id}")
     suspend fun getTrackById(@Path("id") id: Long): ApiTrackDto
+
+    @GET("album/{id}")
+    suspend fun getAlbumTracks(@Path("id") id: Long): ApiAlbumTracksResponse
 }
