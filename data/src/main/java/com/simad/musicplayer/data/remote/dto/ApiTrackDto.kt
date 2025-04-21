@@ -12,7 +12,7 @@ data class ApiTrackDto(
     val id: Long,
     val title: String,
     val artist: ApiArtistDto,
-    val album: ApiAlbumDto?,
+    val album: ApiAlbumDto? = null,
     val preview: String,
     val duration: Int
 )
@@ -21,7 +21,7 @@ data class ApiTrackDto(
 data class ApiArtistDto(val name: String)
 
 @Serializable
-data class ApiAlbumDto(val title: String, val cover: String?)
+data class ApiAlbumDto(val id: Long, val title: String, val cover_big: String?)
 
 fun ApiTrackDto.toDomain(): Track {
     return Track(
@@ -29,7 +29,8 @@ fun ApiTrackDto.toDomain(): Track {
         title = title,
         artist = artist.name,
         album = album?.title,
-        coverUrl = album?.cover,
+        albumId = album?.id?.toString(),
+        coverUrl = album?.cover_big,
         duration = duration,
         source = TrackSource.Remote(preview)
     )
